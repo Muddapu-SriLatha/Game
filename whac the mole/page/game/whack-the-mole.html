@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Whack a Mole</title>
+    <link rel="stylesheet" href="whack-the-mole.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+</head>
+
+<body>
+
+    <!-- Score and Time Display -->
+    <div class="score-container">
+        <div class="stat-box">
+            <div class="stat-title">Your Score</div>
+            <div class="stat-value" id="score">0</div>
+        </div>
+
+        <div class="stat-box">
+            <div class="stat-title">Time Left</div>
+            <div class="stat-value" id="time-left">30</div>
+        </div>
+    </div>
+    <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboard-list"></ul>
+    </div>
+
+
+    <!-- Game Grid -->
+    <div class="grid">
+        <div class="square" id="1"></div>
+        <div class="square" id="2"></div>
+        <div class="square" id="3"></div>
+        <div class="square" id="4"></div>
+        <div class="square" id="5"></div>
+        <div class="square" id="6"></div>
+        <div class="square" id="7"></div>
+        <div class="square" id="8"></div>
+        <div class="square" id="9"></div>
+    </div>
+
+    <script src="whack-the-mole.js"></script>
+</body>
+
+

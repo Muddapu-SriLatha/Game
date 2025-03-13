@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome!</h2>
+        <p>Your Highest Score: <span id="highest-score">Loading...</span></p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script type="module">
+        import { auth, db } from "./firebaseConfig.js";
+        import { signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        async function fetchUserData() {
+            const user = auth.currentUser;
+            if (!user) {
+                window.location.href = "../login/login.html";
+                return;
+            }
+
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                document.getElementById("highest-score").textContent = userDoc.data().highestScore;
+            }
+        }
+
+        window.logout = async function () {
+            await signOut(auth);
+            alert("Logged out successfully!");
+            window.location.href = "../login/login.html";
+        };
+
+        fetchUserData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+/* General Styling */
+body {
+    background-image: url(../../images/b1.avif);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Score and Time Box Styling */
+.score-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.stat-box:hover {
+    transform: scale(1.05);
+}
+
+.stat-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    animation: pop-in 0.3s ease-in-out;
+}
+
+/* Grid Layout */
+.grid {
+    width: 350px;
+    height: 350px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+    background: #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Square Styling */
+.square {
+    background-color: #f8d5a3;
+    border: 3px solid #b36b00;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.square:hover {
+    background-color: #ffcc80;
+    transform: scale(1.05);
+}
+
+/* Mole Appearance */
+.mole {
+    background-image: url("../../images/mole.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    animation: pop-up 0.3s ease-out;
+}
+
+/* Animation for Mole */
+@keyframes pop-up {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* Animation for Score and Time */
+@keyframes pop-in {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .grid {
+        width: 280px;
+        height: 280px;
+    }
+
+    .square {
+        border-width: 2px;
+    }
+
+    .score-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .stat-box {
+        padding: 12px 20px;
+    }
+
+    .stat-title {
+        font-size: 16px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+}

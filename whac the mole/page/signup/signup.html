@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Signup</h2>
+        <input type="email" id="signup-email" placeholder="Enter Email" required>
+
+        <!-- Password field with Show/Hide text -->
+        <div class="password-container">
+            <input type="password" id="signup-password" placeholder="Enter Password" required>
+            <span class="toggle-password" onclick="togglePassword()">Show</span>
+        </div>
+
+        <button onclick="signup()">Sign Up</button>
+        <p>Already have an account? <a href="../login/login.html">Login here</a></p>
+        <p id="signup-error" class="error"></p>
+    </div>
+    
+    <script type="module">
+        import { auth, db } from "../firebaseConfig.js";
+        import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        window.signup = async function () {
+            const email = document.getElementById("signup-email").value;
+            const password = document.getElementById("signup-password").value;
+            const errorMessage = document.getElementById("signup-error");
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Save user with default highest score = 0
+                await setDoc(doc(db, "users", user.uid), { email: user.email, highestScore: 0 });
+
+                alert("Signup successful! Redirecting to login...");
+                window.location.href = "../login/login.html";
+            } catch (error) {
+                errorMessage.textContent = error.message;
+            }
+        };
+
+        // Function to toggle password visibility
+        window.togglePassword = function () {
+            const passwordInput = document.getElementById("signup-password");
+            const toggleText = document.querySelector(".toggle-password");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleText.textContent = "Hide";
+            } else {
+                passwordInput.type = "password";
+                toggleText.textContent = "Show";
+            }
+        };
+    </script>
+</body>
+</html>
