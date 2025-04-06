@@ -54,8 +54,8 @@
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
                 console.log("User Info:", userCredential.user);  // Debugging
-                alert("Login successful! Redirecting to dashboard...");
-                window.location.href = "../dashboard/dashboard.html";
+                 alert("Login successful! ");
+                window.location.href = "../game/whack-the-mole.html";
             } catch (error) {
                 console.error("Login Error:", error.code, error.message);  // Debugging
                 errorMessage.textContent = error.message;
